@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Test E - Reading Part 2: Reading to Apply a Diagram</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .page-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: calc(100vh - 80px);
+        }
+
+        .test-container {
+            width: 1200px;
+            height: 1568px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #e1e5e9;
+            position: relative;
+        }
+
+        .header {
+            background-color: #e8f4fd;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            height: 60px;
+        }
+
+        .header-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .timer-next {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .timer {
+            color: #666;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .next-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .next-button:hover {
+            background-color: #0056b3;
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .left-panel {
+            flex: 0.47;
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-right: 1px solid #ddd;
+            overflow-y: auto;
+        }
+
+        .right-panel {
+            flex: 0.53;
+            background-color: white;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #333;
+            font-size: 16px;
+            line-height: 1.4;
+            padding-left: 8px;
+        }
+
+        .info-icon {
+            background-color: #007bff;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .diagram-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .transportation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .transport-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: white;
+        }
+
+        .transport-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .transport-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .transport-details {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .transport-details p {
+            margin-bottom: 5px;
+        }
+
+        .email-content {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .email-header {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .email-subject {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .email-meta {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .email-body {
+            line-height: 2.2;
+        }
+
+        .question-section {
+            margin-bottom: 40px;
+            padding-left: 8px;
+        }
+
+        .question {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        .question-number {
+            font-weight: 600;
+            margin-right: 10px;
+            min-width: 20px;
+            font-size: 16px;
+        }
+
+        .question-text {
+            flex: 1;
+            font-size: 16px;
+        }
+
+        .dropdown {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            margin-left: 10px;
+            min-width: 150px;
+            font-size: 16px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 16px;
+            padding-right: 30px;
+        }
+
+        /* Widen dropboxes for long answers */
+        #q1, #q5 {
+            min-width: 280px;
+            max-width: 350px;
+        }
+
+        .blank-dropdown {
+            padding: 2px 6px;
+            border: 1px solid #007bff;
+            border-radius: 3px;
+            background-color: white;
+            margin: 0 2px;
+            min-width: 120px;
+            max-width: 200px;
+            font-size: 14px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='7,10 12,15 17,10'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 4px center;
+            background-size: 10px;
+            padding-right: 20px;
+            white-space: nowrap;
+            vertical-align: baseline;
+            line-height: 1.2;
+            height: 28px;
+            position: relative;
+            top: 0.1em;
+            box-sizing: border-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .bottom-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #ddd;
+        }
+
+
+
+        .results {
+            display: none;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        /* Logo */
+        .logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background-color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #e1e5e9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            .logo-container {
+                position: static;
+                top: auto;
+                left: auto;
+                width: 100%;
+                text-align: center;
+                padding: 15px;
+                margin-bottom: 10px;
+                border-radius: 0;
+                background-color: white;
+                border-bottom: 1px solid #e1e5e9;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            .logo-container img {
+                max-width: 120px !important;
+                display: block;
+                margin: 0 auto;
+            }
+
+            .page-container {
+                padding: 15px 10px;
+                min-height: 100vh;
+            }
+
+            .test-container {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                min-height: calc(100vh - 30px);
+                margin: 0;
+                border-radius: 8px;
+                flex-direction: column;
+            }
+
+            .header {
+                padding: 12px 15px;
+                flex-direction: column;
+                height: auto;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .header-title {
+                font-size: 16px;
+                font-weight: 600;
+                text-align: left;
+            }
+
+            .timer-next {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .timer {
+                font-size: 14px;
+            }
+
+            .next-button {
+                padding: 12px 24px;
+                font-size: 16px;
+                border-radius: 6px;
+                min-width: 120px;
+            }
+
+            .main-container {
+                flex-direction: column;
+                padding: 15px;
+                gap: 20px;
+                overflow-y: auto;
+                flex: 1;
+            }
+
+            .left-panel {
+                width: 100%;
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .diagram-content {
+                padding: 15px;
+                border-radius: 8px;
+            }
+
+            .diagram-content img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 6px;
+            }
+
+            .right-panel {
+                width: 100%;
+                max-width: 100%;
+                padding: 0;
+            }
+
+            .email-section {
+                margin-bottom: 20px;
+            }
+
+            .email-section h3 {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+
+            .email-container {
+                padding: 15px;
+                border-radius: 8px;
+                margin-bottom: 15px;
+            }
+
+            .email-header strong {
+                font-size: 14px;
+            }
+
+            .email-body {
+                font-size: 15px;
+                line-height: 2.2;
+            }
+
+            .questions-section h3 {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+
+            .question {
+                margin-bottom: 20px;
+                padding: 15px;
+                border-radius: 8px;
+                background-color: #f8f9fa;
+                border: 1px solid #e9ecef;
+                display: block; /* Override desktop flexbox */
+            }
+
+            .question-number {
+                font-weight: bold;
+                color: black;
+                margin-right: 8px;
+                display: inline;
+                font-size: 16px;
+            }
+
+            .question-text {
+                font-size: 15px;
+                line-height: 1.5;
+                font-weight: 500;
+                display: inline;
+            }
+
+            /* Create a line break after question text for dropdown to appear underneath */
+            .question .question-text:after {
+                content: "";
+                display: block;
+                margin-bottom: 25px;
+            }
+
+            /* Regular question dropdowns - display underneath question text */
+            .dropdown {
+                width: 100%;
+                padding: 12px 15px;
+                font-size: 16px;
+                border-radius: 6px;
+                min-height: 44px;
+                margin-top: 0px; /* Remove top margin since we have spacing from :after */
+                border: 1px solid #ddd;
+                background-color: white;
+                display: block;
+                clear: both;
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+                background-repeat: no-repeat;
+                background-position: right 8px center;
+                background-size: 16px;
+                padding-right: 30px;
+            }
+
+            /* Email response dropdowns - use desktop styling for consistency */
+            .blank-dropdown {
+                padding: 2px 6px;
+                border: 1px solid #007bff;
+                border-radius: 3px;
+                background-color: white;
+                margin: 0 2px;
+                min-width: 120px;
+                max-width: 200px;
+                font-size: 14px;
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='7,10 12,15 17,10'%3e%3c/polyline%3e%3c/svg%3e");
+                background-repeat: no-repeat;
+                background-position: right 4px center;
+                background-size: 10px;
+                padding-right: 20px;
+                white-space: nowrap;
+                vertical-align: baseline;
+                line-height: 1.2;
+                height: 28px;
+                position: relative;
+                top: 0.1em;
+                box-sizing: border-box;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .dropdown option {
+                padding: 8px;
+                font-size: 16px;
+            }
+
+            .blank-input {
+                width: 100%;
+                padding: 12px 15px;
+                font-size: 16px;
+                border-radius: 6px;
+                min-height: 44px;
+                border: 2px solid #ddd;
+                margin-top: 8px;
+                box-sizing: border-box;
+            }
+
+            .blank-input:focus {
+                border-color: #007bff;
+                outline: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-container {
+                padding: 10px 5px;
+            }
+
+            .test-container {
+                border-radius: 6px;
+            }
+
+            .main-container {
+                padding: 12px;
+                gap: 15px;
+            }
+
+            .diagram-content {
+                padding: 12px;
+            }
+
+            .email-section h3 {
+                font-size: 16px;
+            }
+
+            .email-container {
+                padding: 12px;
+            }
+
+            .email-body {
+                font-size: 14px;
+                line-height: 2.2;
+            }
+
+            .questions-section h3 {
+                font-size: 16px;
+            }
+
+            .question {
+                padding: 12px;
+                margin-bottom: 15px;
+            }
+
+            .question-text {
+                font-size: 14px;
+            }
+
+            .dropdown, .blank-dropdown, .blank-input {
+                padding: 10px 12px;
+                font-size: 16px;
+                min-height: 42px;
+            }
+
+            .next-button {
+                padding: 10px 20px;
+                font-size: 14px;
+                min-width: 100px;
+            }
+
+            .logo-container {
+                padding: 12px;
+            }
+
+            .logo-container img {
+                max-width: 100px !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- LOGO -->
+    <div class="logo-container">
+        <img src="Images/True North English Logo 2.0 (400 x 100 px).png" alt="True North English" style="max-width: 200px; height: auto;">
+    </div>
+
+    <div class="page-container">
+        <div class="test-container">
+            <!-- HEADER -->
+            <div class="header">
+                <div class="header-title">Practice Test F - Reading Part 2: Reading to Apply a Diagram</div>
+                <div class="timer-next">
+                    <div class="timer" id="timer">Time remaining: 8:00</div>
+                    <button class="next-button" id="submitTestBtn">COMPLETE</button>
+                </div>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="main-container">
+                <!-- LEFT PANEL - DIAGRAM -->
+                <div class="left-panel">
+                    <div class="diagram-content">
+                        <!-- =========================================== -->
+                        <!-- EDITABLE SECTION: DIAGRAM IMAGE -->
+                        <!-- =========================================== -->
+                        <!-- Replace the src below with your diagram image path -->
+                        <!-- Example: src="images/your-diagram.png" -->
+                        <img src="Images/Cloverford Recreation Center.png" alt="Recreation Center Fitness Classes Flyer" style="width: 115%; max-width: 115%; height: auto; border-radius: 8px; margin: 0 auto; display: block; position: relative; left: -10%;">
+                        <!-- =========================================== -->
+                        <!-- END OF EDITABLE SECTION -->
+                        <!-- =========================================== -->
+                    </div>
+                </div>
+
+                <!-- RIGHT PANEL - EMAIL & QUESTIONS -->
+                <div class="right-panel">
+                    <!-- =========================================== -->
+                    <!-- EDITABLE SECTION: INSTRUCTIONS -->
+                    <!-- =========================================== -->
+                    <div class="section-header">
+                        <div class="info-icon">i</div>
+                        <div>Read the following email message about the recreation center flyer on the left. Complete the email by filling in the blanks. Select the best choice for each blank from the drop-down menu (▼).</div>
+                    </div>
+                    
+                    <!-- =========================================== -->
+                    <!-- EDITABLE SECTION: EMAIL CONTENT -->
+                    <!-- =========================================== -->
+                    <!-- You can modify the email subject, sender, recipient, and body text below -->
+                    <div class="email-content">
+                        <div class="email-header">
+                            <div class="email-meta">
+                                Subject: Are you free for lunch?<br>
+                                To: Anna Smith ‹ansmith@dunderson.com›<br>
+                                From: Jeanette LeBlanc ‹jeanb@ses.com›
+                            </div>
+                        </div>
+                        <div class="email-body">
+                            Hi Anna,<br><br>
+                            
+                            Remember how you mentioned wanting to be more active? Well, I got this flyer in the mail for the recreation centre near our office and thought you might be interested in <span class="dropdown-group">1. 
+                            <select class="blank-dropdown" id="q1">
+                                <option value="">&nbsp;</option>
+                                <option value="signing up for a drop-in class">signing up for a drop-in class</option>
+                                <option value="trying out a weekend fitness class">trying out a weekend fitness class</option>
+                                <option value="registering for a free trial class">registering for a free trial class</option>
+                                <option value="joining their team sports league">joining their team sports league</option>
+                            </select></span>. I'd only be available evenings though. Since changing departments, I'm at my desk by 7:00 a.m. every day (I miss getting picked up on your way to work!).<br><br>
+                            
+                            As far as classes go, I'm hoping to get in shape before summer, meaning I'd like to go as many nights a week as possible. So my preference would be the <span class="dropdown-group">2. 
+                            <select class="blank-dropdown" id="q2">
+                                <option value="">&nbsp;</option>
+                                <option value="Beginner Spin Class">Beginner Spin Class</option>
+                                <option value="Circuit Weight Training">Circuit Weight Training</option>
+                                <option value="Intermediate Pilates">Intermediate Pilates</option>
+                                <option value="Yoga for Adults">Yoga for Adults</option>
+                            </select></span> class. Actually, I'm trying to convince my entire family to do the same. However, this place might not be the best for them since <span class="dropdown-group">3. 
+                            <select class="blank-dropdown" id="q3">
+                                <option value="">&nbsp;</option>
+                                <option value="children must be over 16">children must be over 16</option>
+                                <option value="most classes are for women">most classes are for women</option>
+                                <option value="there isn't a family rate">there isn't a family rate</option>
+                                <option value="most classes are for adults">most classes are for adults</option>
+                            </select></span>.<br><br>
+                            
+                            Anyways, I know you had mentioned wanting to try a bootcamp class, but unfortunately, it isn't <span class="dropdown-group">4. 
+                            <select class="blank-dropdown" id="q4">
+                                <option value="">&nbsp;</option>
+                                <option value="a drop-in class">a drop-in class</option>
+                                <option value="meant for beginners">meant for beginners</option>
+                                <option value="a challenging workout">a challenging workout</option>
+                                <option value="intended for adults">intended for adults</option>
+                            </select></span>. Hopefully one of the other classes will work.<br><br>
+                            
+                            Also, if we were to buy the monthly membership <span class="dropdown-group">5. 
+                            <select class="blank-dropdown" id="q5">
+                                <option value="">&nbsp;</option>
+                                <option value="our husbands get free memberships">our husbands get free memberships</option>
+                                <option value="we get a reduced rate on classes">we get a reduced rate on classes</option>
+                                <option value="our first month of classes are free">our first month of classes are free</option>
+                                <option value="we can attend any class for free">we can attend any class for free</option>
+                            </select></span>. Definitely worth considering!<br><br>
+                            
+                            Let me know!!<br><br>
+                            
+                            Jeanette
+                        </div>
+                    </div>
+                    <!-- =========================================== -->
+                    <!-- END OF EDITABLE SECTION -->
+                    <!-- =========================================== -->
+
+                    <!-- =========================================== -->
+                    <!-- EDITABLE SECTION: ADDITIONAL QUESTIONS -->
+                    <!-- =========================================== -->
+                    <!-- You can modify the questions and their dropdown options below -->
+                    <div class="question-section">
+                        <div class="section-header">
+                            <div class="info-icon">i</div>
+                            <div>Using the drop-down menu (▼), choose the best option.</div>
+                        </div>
+                        
+                        <div class="question">
+                            <div class="question-number">6.</div>
+                            <div class="question-text">What is Jeanette's relationship to Anna? <select class="dropdown" id="q6">
+                                <option value="">&nbsp;</option>
+                                <option value="client">client</option>
+                                <option value="friend">friend</option>
+                                <option value="boss">boss</option>
+                                <option value="neighbour">neighbour</option>
+                            </select></div>
+                        </div>
+                        
+                        <div class="question">
+                            <div class="question-number">7.</div>
+                            <div class="question-text">Why does Jeanette want to take evening classes? <select class="dropdown" id="q7">
+                                <option value="">&nbsp;</option>
+                                <option value="She works in the morning">She works in the morning</option>
+                                <option value="She can get a ride with Anna">She can get a ride with Anna</option>
+                                <option value="She wants to avoid getting up early">She wants to avoid getting up early</option>
+                                <option value="She prefers the classes being offered">She prefers the classes being offered</option>
+                            </select></div>
+                        </div>
+                        
+                        <div class="question">
+                            <div class="question-number">8.</div>
+                            <div class="question-text">What does Jeanette think about the membership? <select class="dropdown" id="q8">
+                                <option value="">&nbsp;</option>
+                                <option value="The family membership would be best">The family membership would be best</option>
+                                <option value="It's a great value for the money">It's a great value for the money</option>
+                                <option value="The trial membership is a good price">The trial membership is a good price</option>
+                                <option value="It's not as good as drop-in classes">It's not as good as drop-in classes</option>
+                            </select></div>
+                        </div>
+                    </div>
+                    <!-- =========================================== -->
+                    <!-- END OF EDITABLE SECTION -->
+                    <!-- =========================================== -->
+
+                    <!-- RESULTS SECTION -->
+                    <div class="results" id="results">
+                        <h3>Selected Answers:</h3>
+                        <div id="answerResults"></div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script>
+        // ===========================================
+        // EDITABLE SECTION: TIMER SETTINGS
+        // ===========================================
+        // Change the time limit here (in minutes)
+        let timeLimit = 8;
+        // ===========================================
+        // END OF EDITABLE SECTION
+        // ===========================================
+
+        let timeRemaining = timeLimit * 60; // Convert to seconds
+        const timerElement = document.getElementById('timer');
+
+        // Timer function
+        function updateTimer() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            timerElement.textContent = `Time remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeRemaining > 0) {
+                timeRemaining--;
+                setTimeout(updateTimer, 1000);
+            } else {
+                timerElement.textContent = "Time's up!";
+            }
+        }
+
+        // Start timer when page loads
+        updateTimer();
+
+        // Load saved answers from localStorage when page loads (disabled for fresh start)
+        function loadSavedAnswers() {
+            // Disabled to ensure fresh start for each test attempt
+            // Previous answers are cleared when starting from the start page
+            console.log('Fresh test - no previous answers loaded');
+        }
+
+        // Load saved answers when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSavedAnswers();
+        });
+
+        // Function to show results
+        function showResults() {
+            const results = document.getElementById('results');
+            const answerResults = document.getElementById('answerResults');
+            
+            let resultsHTML = '';
+            
+            // Get all dropdown answers
+            for (let i = 1; i <= 8; i++) {
+                const dropdown = document.getElementById(`q${i}`);
+                const selectedValue = dropdown.value;
+                resultsHTML += `<p><strong>Question ${i}:</strong> ${selectedValue || 'Not answered'}</p>`;
+            }
+            
+            answerResults.innerHTML = resultsHTML;
+            results.classList.add('show');
+            
+            // Log to console for easy viewing
+            console.log('=== SELECTED ANSWERS ===');
+            for (let i = 1; i <= 8; i++) {
+                const dropdown = document.getElementById(`q${i}`);
+                console.log(`Question ${i}: ${dropdown.value || 'Not answered'}`);
+            }
+            console.log('=======================');
+        }
+
+        // Add event listeners for dropdown changes
+        document.querySelectorAll('.dropdown, .blank-dropdown').forEach(dropdown => {
+            dropdown.addEventListener('change', function() {
+                console.log(`${this.id}: ${this.value}`);
+                
+                // Save answer to localStorage with page 2 identifier
+                localStorage.setItem(`${this.id}-p2`, this.value);
+                
+                // Style the dropdown to show green text when an option is selected (for both types)
+                if (this.value !== '') {
+                    this.style.color = '#2d5a2d';
+                    this.style.fontWeight = 'normal';
+                } else {
+                    this.style.color = '#333';
+                    this.style.fontWeight = 'normal';
+                }
+            });
+        });
+
+
+
+        // Handle test submission
+        document.getElementById('submitTestBtn').addEventListener('click', function() {
+            submitTestResults();
+        });
+
+        // Function to submit test results
+        function submitTestResults() {
+            // Record test end time
+            localStorage.setItem('testEndTime', new Date().toISOString());
+            
+            // Calculate time taken
+            const startTime = localStorage.getItem('testStartTime');
+            const endTime = localStorage.getItem('testEndTime');
+            let timeTakenSeconds = 0;
+            let timeTakenFormatted = '0 minutes';
+            
+            if (startTime && endTime) {
+                const start = new Date(startTime);
+                const end = new Date(endTime);
+                timeTakenSeconds = Math.floor((end - start) / 1000);
+                const minutes = Math.floor(timeTakenSeconds / 60);
+                const seconds = timeTakenSeconds % 60;
+                timeTakenFormatted = `${minutes} minute${minutes !== 1 ? 's' : ''}${seconds > 0 ? ` ${seconds} second${seconds !== 1 ? 's' : ''}` : ''}`;
+            }
+            
+            // Collect all test data
+            const testData = {
+                participant: {
+                    firstName: localStorage.getItem('participantFirstName'),
+                    lastName: localStorage.getItem('participantLastName'),
+                    email: localStorage.getItem('participantEmail')
+                },
+                testInfo: {
+                    startTime: startTime,
+                    endTime: endTime,
+                    completionTime: new Date(endTime).toLocaleString(),
+                    timeTakenSeconds: timeTakenSeconds,
+                    timeTakenFormatted: timeTakenFormatted,
+                    testType: 'Practice Test F - Reading 1-2'
+                },
+                answers: {},
+                results: {
+                    totalQuestions: 19,
+                    correctAnswers: 0,
+                    score: 0
+                }
+            };
+
+            // Collect answers from Part 1 (questions 1-11)
+            for (let i = 1; i <= 11; i++) {
+                const answer = localStorage.getItem(`q${i}`);
+                testData.answers[`q${i}`] = answer || 'Not answered';
+            }
+
+            // Collect answers from Part 2 (questions 12-19)
+            for (let i = 1; i <= 8; i++) {
+                const answer = localStorage.getItem(`q${i}-p2`);
+                testData.answers[`q${i+11}`] = answer || 'Not answered';
+            }
+
+            // Calculate results with correct answers
+            const correctAnswers = {
+                // Part 1 answers (q1-q11)
+                q1: 'sent Peter a birthday gift',
+                q2: 'has had some guitar lessons',
+                q3: 'visited the jungle with Ecuadorian guides',
+                q4: 'began to enjoy the rainforest',
+                q5: 'enjoying the last part of her trip',
+                q6: "people's goodwill",
+                q7: 'can learn to drive',
+                q8: 'guitar lessons',
+                q9: 'harmful',
+                q10: 'being friendly',
+                q11: 'show the way',
+                // Part 2 answers (q12-q19)
+                q12: 'application',
+                q13: 'customer service',
+                q14: 'cash registers',
+                q15: 'additional languages',
+                q16: 'City Foods',
+                q17: 'in person',
+                q18: 'expanding',
+                q19: 'arrange an interview'
+            };
+
+            let correctCount = 0;
+            for (let i = 1; i <= 19; i++) {
+                const questionKey = `q${i}`;
+                const userAnswer = testData.answers[questionKey];
+                const correctAnswer = correctAnswers[questionKey];
+                
+                if (userAnswer === correctAnswer) {
+                    correctCount++;
+                }
+            }
+
+            testData.results.correctAnswers = correctCount;
+            testData.results.score = Math.round((correctCount / 19) * 100);
+
+            // Debug logging
+            console.log('Test Data to be saved:', testData);
+            console.log('Participant info:', testData.participant);
+            console.log('All answers:', testData.answers);
+            console.log('Final score:', testData.results.score);
+            
+            // Save time taken for answer key display
+            localStorage.setItem('timeTaken', timeTakenFormatted);
+            
+            // Save results to localStorage for review
+            const existingResults = JSON.parse(localStorage.getItem('allTestResults') || '[]');
+            existingResults.push(testData);
+            localStorage.setItem('allTestResults', JSON.stringify(existingResults));
+            
+            console.log('Saved to allTestResults:', existingResults);
+            
+            // Verify data was saved
+            const verification = localStorage.getItem('allTestResults');
+            console.log('Verification - Raw localStorage data:', verification);
+            console.log('Verification - Parsed data:', JSON.parse(verification || '[]'));
+
+            // Add small delay to ensure data is saved, then navigate
+            setTimeout(() => {
+                window.location.href = '04_Answer_Key.html';
+            }, 100);
+        }
+    </script>
+</body>
+</html> 

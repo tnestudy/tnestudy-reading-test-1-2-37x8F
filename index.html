@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading 1-2 Homework (Practice Test F) - 19 Questions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .page-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .start-container {
+            width: 800px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            overflow: hidden;
+            border: 1px solid #e1e5e9;
+        }
+
+        .header {
+            background-color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header-title {
+            font-weight: 800;
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .header-subtitle {
+            font-weight: 600;
+            color: #666;
+            font-size: 20px;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .instructions-section {
+            margin-bottom: 40px;
+        }
+
+        .instructions-title {
+            font-weight: 700;
+            color: #007bff;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .instructions-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .instructions-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 15px;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        .instructions-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #007bff;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .tne-note {
+            font-style: italic;
+            color: #666;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .test-sections {
+            margin-bottom: 40px;
+        }
+
+        .sections-title {
+            font-weight: 700;
+            color: #007bff;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .sections-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .sections-table th {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .sections-table td {
+            padding: 15px;
+            border-bottom: 1px solid #dee2e6;
+            color: #495057;
+        }
+
+        .sections-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .participant-info {
+            margin-bottom: 40px;
+        }
+
+        .participant-title {
+            font-weight: 700;
+            color: #007bff;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            flex: 1;
+        }
+
+        .form-group.full-width {
+            flex: none;
+            width: 100%;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            background-color: #f8f9fa;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #007bff;
+            background-color: white;
+        }
+
+        .form-input::placeholder {
+            color: #9CA3AF;
+            opacity: 0.6;
+        }
+
+        .start-button-container {
+            text-align: center;
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .start-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 18px 60px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            min-width: 200px;
+        }
+
+        .start-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+        }
+
+        .start-button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .start-button:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+        }
+
+        /* Logo Styles */
+        .logo-section {
+            text-align: center;
+            margin-bottom: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+        }
+
+        .logo-placeholder {
+            display: inline-block;
+            width: 200px;
+            height: 80px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+            line-height: 1.4;
+            transition: border-color 0.2s;
+        }
+
+        .logo-placeholder:hover {
+            border-color: #007bff;
+        }
+
+        .logo-instructions {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #888;
+            font-style: italic;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .start-container {
+                margin: 0;
+                padding: 20px 15px;
+                width: 100%;
+                max-width: 100%;
+                border-radius: 15px;
+            }
+            
+            .logo-section {
+                padding: 15px;
+                text-align: center;
+            }
+            
+            .logo-section img {
+                max-width: 150px;
+            }
+            
+            .header-title {
+                font-size: 26px;
+                line-height: 1.3;
+                margin-bottom: 8px;
+            }
+            
+            .header-subtitle {
+                font-size: 16px;
+                line-height: 1.4;
+            }
+            
+            .instructions-title, .sections-title, .participant-title {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+            
+            .instructions-list li {
+                font-size: 16px;
+                line-height: 1.5;
+                margin-bottom: 15px;
+                padding-left: 25px;
+            }
+            
+            .instructions-list li:before {
+                font-size: 18px;
+                left: -20px;
+            }
+            
+            .sections-table {
+                font-size: 14px;
+                overflow-x: auto;
+                display: block;
+                white-space: nowrap;
+            }
+            
+            .sections-table th, .sections-table td {
+                padding: 10px 8px;
+                min-width: 80px;
+            }
+            
+            .form-group {
+                margin-bottom: 20px;
+            }
+            
+            .form-label {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+            
+            .form-input {
+                width: 100%;
+                padding: 16px 15px;
+                font-size: 16px;
+                border-radius: 10px;
+                box-sizing: border-box;
+            }
+            
+            .start-button {
+                width: 100%;
+                padding: 18px 20px;
+                font-size: 18px;
+                border-radius: 10px;
+                margin-top: 30px;
+                min-width: auto;
+            }
+            
+            .start-button-container {
+                margin-top: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .start-container {
+                padding: 15px 12px;
+            }
+            
+            .header-title {
+                font-size: 22px;
+            }
+            
+            .header-subtitle {
+                font-size: 14px;
+            }
+            
+            .instructions-title, .sections-title, .participant-title {
+                font-size: 18px;
+            }
+            
+            .instructions-list li {
+                font-size: 15px;
+                padding-left: 22px;
+            }
+            
+            .form-input {
+                padding: 14px 12px;
+                font-size: 16px;
+            }
+            
+            .start-button {
+                padding: 16px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="start-container">
+                        <!-- LOGO SECTION -->
+            <div class="logo-section">
+                <!-- =========================================== -->
+                <!-- LOGO UPLOAD AREA - EASY TO REPLACE -->
+                <!-- =========================================== -->
+                <!-- 
+                TO ADD YOUR LOGO:
+                1. Replace the div below with your logo image
+                2. Example: <img src="your-logo.png" alt="True North English" style="max-width: 200px; max-height: 80px;">
+                3. Or keep the placeholder if you prefer
+                -->
+                <img src="Images/True North English Logo 2.0 (400 x 100 px).png" alt="True North English" style="max-width: 200px; height: auto;">
+            </div>
+
+            <!-- HEADER -->
+            <div class="header">
+                <div class="header-title">Reading 1-2 Homework (Practice Test F)</div>
+                <div class="header-subtitle">19 Questions</div>
+            </div>
+
+            <!-- CONTENT -->
+            <div class="content">
+                <!-- INSTRUCTIONS SECTION -->
+                <div class="instructions-section">
+                    <h2 class="instructions-title">Instructions:</h2>
+                    <ul class="instructions-list">
+                        <li>On the official test, once you leave a page, you cannot go back to it to change your answers. However, in this practice test, you can.</li>
+                        <li>Also in the official test, all the questions will be on each page. But in this reading homework, each question will have 45 seconds to answer</li>
+                        <li>Watch the timer in the top right corner to make sure that you complete the Reading Test before the time is up.</li>
+                    </ul>
+                </div>
+
+                <!-- TEST SECTIONS -->
+                <div class="test-sections">
+                    <h2 class="sections-title">Test Sections Overview</h2>
+                    <table class="sections-table">
+                        <thead>
+                            <tr>
+                                <th>Sections</th>
+                                <th>Questions</th>
+                                <th>Duration</th>
+                                <th>Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Reading Part 1: Email Correspondence</td>
+                                <td>11</td>
+                                <td>10 Minute(s)</td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td>Reading Part 2: Reading to Apply a Diagram</td>
+                                <td>8</td>
+                                <td>9 Minute(s)</td>
+                                <td>8</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- PARTICIPANT INFORMATION -->
+                <div class="participant-info">
+                    <h2 class="participant-title">Student Information</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-input" id="firstName" placeholder="Enter your first name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-input" id="lastName" placeholder="Enter your last name">
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" id="email" placeholder="Enter your email address">
+                    </div>
+                </div>
+
+                <!-- START BUTTON -->
+                <div class="start-button-container">
+                    <button class="start-button" id="startButton">Start</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Save participant information to localStorage
+        function clearPreviousTestData() {
+            // Clear all test-related data for fresh start, but preserve instructor results
+            const keysToRemove = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                // Remove question answers, test times, and participant data, but NOT allTestResults
+                if (key && (key.startsWith('q') || key === 'testStartTime' || key === 'testEndTime' || key.startsWith('participant')) && key !== 'allTestResults') {
+                    keysToRemove.push(key);
+                }
+            }
+            keysToRemove.forEach(key => localStorage.removeItem(key));
+            console.log('Previous test data cleared for fresh start (preserved allTestResults)');
+            console.log('Remaining keys:', Object.keys(localStorage));
+        }
+
+        function saveParticipantInfo() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            
+            localStorage.setItem('participantFirstName', firstName);
+            localStorage.setItem('participantLastName', lastName);
+            localStorage.setItem('participantEmail', email);
+            
+            console.log('Saved participant info:', {
+                firstName: localStorage.getItem('participantFirstName'),
+                lastName: localStorage.getItem('participantLastName'),
+                email: localStorage.getItem('participantEmail')
+            });
+        }
+
+        // Validate form before starting
+        function validateForm() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            
+            if (!firstName || !lastName || !email) {
+                alert('Please fill in all fields before starting the test.');
+                return false;
+            }
+            
+            // Basic email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+            
+            return true;
+        }
+
+        // Simple and clean initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Clear any previous test data for fresh start
+            clearPreviousTestData();
+            
+            const startButton = document.getElementById('startButton');
+            const firstName = document.getElementById('firstName');
+            const lastName = document.getElementById('lastName');
+            const email = document.getElementById('email');
+            
+            // Disable button by default until all fields are filled
+            startButton.disabled = true;
+            startButton.style.backgroundColor = '#6c757d';
+            
+            // Add click handler
+            startButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('Start button clicked!');
+                
+                if (validateForm()) {
+                    console.log('Form validated, saving data and navigating...');
+                    saveParticipantInfo();
+                    console.log('Navigating to Reading Part 1...');
+                    window.location.href = '02_Reading_Part1_Email_Correspondence.html';
+                } else {
+                    console.log('Form validation failed');
+                    alert('Please fill in all fields before starting the test.');
+                }
+            });
+            
+            // Update button state as user types
+            [firstName, lastName, email].forEach(input => {
+                input.addEventListener('input', function() {
+                    const allFilled = firstName.value.trim() && lastName.value.trim() && email.value.trim();
+                    startButton.disabled = !allFilled;
+                    startButton.style.backgroundColor = allFilled ? '#007bff' : '#6c757d';
+                    
+                    // Also update cursor style
+                    if (allFilled) {
+                        startButton.style.cursor = 'pointer';
+                    } else {
+                        startButton.style.cursor = 'not-allowed';
+                    }
+                });
+                
+                // Add Enter key support
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const allFilled = firstName.value.trim() && lastName.value.trim() && email.value.trim();
+                        if (allFilled) {
+                            startButton.click();
+                        }
+                    }
+                });
+            });
+            
+            // Initial check for any pre-filled values
+            const initialCheck = firstName.value.trim() && lastName.value.trim() && email.value.trim();
+            if (initialCheck) {
+                startButton.disabled = false;
+                startButton.style.backgroundColor = '#007bff';
+                startButton.style.cursor = 'pointer';
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Test F - Reading Answer Key</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .page-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: calc(100vh - 80px);
+            padding: 20px;
+        }
+
+        .answer-key-container {
+            width: 1200px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            overflow: hidden;
+            border: 1px solid #e1e5e9;
+        }
+
+        .header {
+            background-color: #e8f4fd;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 20px;
+        }
+
+
+
+        .note-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px;
+            font-size: 14px;
+            color: #856404;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .answer-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .answer-table th {
+            background-color: #f8f9fa;
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #dee2e6;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .answer-table td {
+            padding: 12px;
+            border-bottom: 1px solid #dee2e6;
+            vertical-align: top;
+        }
+
+        .answer-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .section-header {
+            background-color: #e9ecef;
+            font-weight: 600;
+            color: #495057;
+            padding: 15px 12px;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .question-cell {
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .answer-key-cell {
+            color: #28a745;
+            font-weight: 500;
+        }
+
+        .user-answer-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-answer-text {
+            color: #6c757d;
+        }
+
+        .correct-indicator {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .correct {
+            color: #28a745;
+        }
+
+        .incorrect {
+            color: #dc3545;
+        }
+
+        .return-link {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .return-link:hover {
+            text-decoration: underline;
+        }
+
+        .no-answer {
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .score-summary {
+            background-color: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .score-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .score-header p {
+            margin: 5px 0;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .score-summary h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .score-details {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .score-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .score-row:last-child {
+            border-bottom: none;
+        }
+
+        .score-label {
+            font-weight: 500;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .score-value {
+            font-weight: 600;
+            color: #495057;
+            font-size: 16px;
+        }
+
+        .explanation-button-container {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .explanation-button {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .explanation-button:hover {
+            background: linear-gradient(135deg, #218838 0%, #1ea085 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+
+        .explanation-button:active {
+            transform: translateY(0px);
+        }
+
+        .feedback-section {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .feedback-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .feedback-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 6px;
+            border-left: 4px solid #007bff;
+        }
+
+        .feedback-question {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .feedback-quote {
+            background-color: #e8f4fd;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 8px 0;
+            font-style: italic;
+            color: #495057;
+        }
+
+        .feedback-explanation {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .question-text {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .feedback-header {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 6px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .question-cell .feedback-quote {
+            background-color: #e8f4fd;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+            font-style: italic;
+            color: #495057;
+            font-size: 14px;
+        }
+
+        .question-cell .feedback-explanation {
+            color: #666;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        /* New layout styles */
+        .question-detail-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 30px 0 20px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-header h2 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .question-detail {
+            background-color: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .question-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .original-text {
+            background-color: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-style: italic;
+            color: #495057;
+            border-left: 4px solid #007bff;
+        }
+
+        .correct-answer {
+            background-color: #d4edda;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            color: #155724;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .checkmark {
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        .quote-text {
+            background-color: #e8f4fd;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            color: #495057;
+            border-left: 4px solid #17a2b8;
+        }
+
+        .explanation-text {
+            background-color: #fff3cd;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            color: #856404;
+            border-left: 4px solid #ffc107;
+        }
+
+        .feedback-text {
+            background-color: #e8f4fd;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            color: #495057;
+            border-left: 4px solid #17a2b8;
+            line-height: 1.5;
+        }
+
+        .feedback-text .feedback-quote {
+            background-color: #ffffff;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-style: italic;
+            color: #495057;
+            border-left: 3px solid #007bff;
+        }
+
+        .feedback-text .feedback-explanation {
+            color: #495057;
+            line-height: 1.4;
+        }
+
+        .user-answer {
+            background-color: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            color: #6c757d;
+            border: 1px solid #dee2e6;
+        }
+
+        .return-link-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+        }
+
+        .return-link {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border: 1px solid #007bff;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .return-link:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            .logo-container {
+                position: static !important;
+                top: auto !important;
+                left: auto !important;
+                width: 100% !important;
+                text-align: center;
+                padding: 15px;
+                margin-bottom: 10px;
+                border-radius: 0;
+                background-color: white;
+                border-bottom: 1px solid #e1e5e9;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                z-index: auto !important;
+            }
+
+            .logo-container img {
+                max-width: 120px !important;
+                display: block;
+                margin: 0 auto;
+            }
+
+            .page-container {
+                padding: 15px 10px;
+                padding-top: 15px;
+                min-height: 100vh;
+            }
+
+            .answer-key-container {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                padding: 20px 15px;
+                border-radius: 12px;
+            }
+
+            .header {
+                padding: 15px;
+                margin-bottom: 20px;
+                border-radius: 8px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+                margin-bottom: 8px;
+                text-align: center;
+            }
+
+            .header p {
+                font-size: 16px;
+                text-align: center;
+            }
+
+            .section-header {
+                font-size: 20px;
+                margin: 25px 0 15px 0;
+                padding: 12px 15px;
+                border-radius: 8px;
+            }
+
+            .question-detail-container {
+                margin-bottom: 20px;
+            }
+
+            .question-detail {
+                padding: 15px;
+                border-radius: 8px;
+                margin-bottom: 15px;
+            }
+
+            .question-label {
+                font-size: 16px;
+                font-weight: 600;
+                margin-bottom: 8px;
+                line-height: 1.4;
+            }
+
+            .original-text {
+                font-size: 15px;
+                line-height: 1.5;
+                margin-bottom: 12px;
+                padding: 12px;
+                border-radius: 6px;
+            }
+
+            .user-answer {
+                font-size: 15px;
+                padding: 12px;
+                border-radius: 6px;
+                margin-bottom: 12px;
+                word-wrap: break-word;
+            }
+
+            .correct-answer {
+                font-size: 15px;
+                padding: 12px;
+                border-radius: 6px;
+                margin-bottom: 12px;
+            }
+
+            .feedback-text {
+                font-size: 15px;
+                padding: 12px;
+                border-radius: 6px;
+            }
+
+            .feedback-text .feedback-quote {
+                padding: 10px;
+                border-radius: 6px;
+                margin-bottom: 10px;
+                font-size: 14px;
+                line-height: 1.4;
+            }
+
+            .feedback-text .feedback-explanation {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+            .return-link-container {
+                margin: 25px 0;
+                padding: 15px;
+            }
+
+            .return-link {
+                display: inline-block;
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+                padding: 15px 20px;
+                font-size: 16px;
+                border-radius: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+
+            .logo-container {
+                padding: 12px;
+            }
+
+            .logo-container img {
+                max-width: 100px !important;
+            }
+
+            .page-container {
+                padding: 10px 5px;
+                padding-top: 10px;
+            }
+
+            .answer-key-container {
+                padding: 15px 12px;
+                border-radius: 10px;
+            }
+
+            .header {
+                padding: 12px;
+                margin-bottom: 15px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+                margin-bottom: 6px;
+            }
+
+            .header p {
+                font-size: 14px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin: 20px 0 12px 0;
+                padding: 10px 12px;
+            }
+
+            .question-detail {
+                padding: 12px;
+                margin-bottom: 12px;
+            }
+
+            .question-label {
+                font-size: 15px;
+                margin-bottom: 6px;
+            }
+
+            .original-text {
+                font-size: 14px;
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+
+            .user-answer {
+                font-size: 14px;
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+
+            .correct-answer {
+                font-size: 14px;
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+
+            .feedback-text {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .feedback-text .feedback-quote {
+                padding: 8px;
+                font-size: 13px;
+                margin-bottom: 8px;
+            }
+
+            .feedback-text .feedback-explanation {
+                font-size: 13px;
+            }
+
+            .return-link-container {
+                margin: 20px 0;
+                padding: 12px;
+            }
+
+            .return-link {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+        }
+
+        /* Logo Styles */
+        .logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background-color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #e1e5e9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Add padding to prevent logo overlap with content */
+        .page-container {
+            padding-top: 80px;
+        }
+    </style>
+</head>
+<body>
+    <!-- LOGO -->
+    <div class="logo-container">
+        <img src="Images/True North English Logo 2.0 (400 x 100 px).png" alt="True North English" style="max-width: 200px; height: auto;">
+    </div>
+
+    <div class="page-container">
+        <div class="answer-key-container">
+            <!-- HEADER -->
+            <div class="header">
+                <div class="header-title">Practice Test F - Reading Answer Key</div>
+            </div>
+
+            <!-- NOTE BOX -->
+            <div class="note-box">
+                <strong>NOTE:</strong> Use the back arrow in your browser to return to the page you just came from. The back arrow is located at the top left of your screen, next to the address bar.
+            </div>
+
+            <!-- SCORE SUMMARY -->
+            <div class="score-summary">
+                <div class="score-header">
+                    <p>Great work completing the homework 🎉! You can go through the breakdown videos for each question</p>
+                    <p>Write down your score in your CELPIP test tracker!</p>
+                </div>
+                
+                <h3>Your Score</h3>
+                
+                <div class="score-details">
+                    <div class="score-row">
+                        <span class="score-label">Name:</span>
+                        <span class="score-value" id="user-name">Hanford Shum</span>
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">Score:</span>
+                        <span class="score-value" id="score-percentage">0/19 Points (0%)</span>
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">Correct Answers:</span>
+                        <span class="score-value" id="correct-count">0</span>
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">Incorrect Answers:</span>
+                        <span class="score-value" id="incorrect-count">0</span>
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">Email:</span>
+                        <span class="score-value" id="user-email">truenorthenglishschool@gma...</span>
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">Unanswered:</span>
+                        <span class="score-value" id="unanswered-count">19</span>
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">Time Taken:</span>
+                        <span class="score-value" id="time-taken">0 secs</span>
+                    </div>
+                    <div class="score-row">
+                        <span class="score-label">Completion Time:</span>
+                        <span class="score-value" id="completion-time">N/A</span>
+                    </div>
+                </div>
+                
+                <div class="explanation-button-container">
+                    <button class="explanation-button">Watch Test Explanation</button>
+                </div>
+            </div>
+
+
+
+            <!-- CONTENT -->
+            <div class="content">
+                <div class="question-detail-container">
+                        <!-- READING PART 1 -->
+                    <div class="section-header">
+                        <h2>Reading Part 1: Reading Correspondence</h2>
+                    </div>
+                    
+                    <div class="question-detail">
+                        <div class="question-label">Question 1:</div>
+                        <div class="question-text">The daughter has studied music for</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q1">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            5 years.
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"Tara, my daughter's teacher over this five-year span..."</div>
+                            <div class="feedback-explanation">Tara was her teacher for five years, so the daughter has been learning for that long.</div>
+                        </div>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 2:</div>
+                        <div class="question-text">The current music teacher</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q2">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            gives the daughter a lot of work.
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"My daughter is sent home from each lesson with more pieces than any 8-year-old should be expected to learn in a week."</div>
+                            <div class="feedback-explanation">The teacher gives more homework than expected for her age.</div>
+                        </div>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 3:</div>
+                        <div class="question-text">The current music teacher has</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q3">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            recently started working at the school.
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"At first I thought the problem was one of adjustment..."</div>
+                            <div class="feedback-explanation">The father thought she was just getting used to the new school, which means she is new.</div>
+                        </div>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 4:</div>
+                        <div class="question-text">The father thinks his daughter should</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q4">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            enjoy learning to play the violin.
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"Music is supposed to be her hobby, not her job."</div>
+                            <div class="feedback-explanation">The father wants her to have fun playing, not feel stressed.</div>
+                        </div>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 5:</div>
+                        <div class="question-text">The primary purpose of the letter is to</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q5">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            ask for a different teacher.
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"I would ask you to assign her to an alternate instructor."</div>
+                            <div class="feedback-explanation">The father is asking for a new teacher to be assigned.</div>
+                        </div>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 6:</div>
+                        <div class="question-text">The letter mainly expresses</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q6">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            dissatisfaction.
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"The teacher is simply unprofessional and poorly qualified."</div>
+                            <div class="feedback-explanation">The father is unhappy and disappointed with the current teacher.</div>
+                        </div>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 7:</div>
+                        <div class="question-text">Thank you for your letter. I am very sorry to hear that your 7. ______.</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q7">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            expectations as a parent were not met
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"I have come to realize that the teacher is simply unprofessional and poorly qualified."</div>
+                            <div class="feedback-explanation">The father is disappointed and expected better from the teacher.</div>
+                        </div>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 8:</div>
+                        <div class="question-text">I can assure you that our school screens and selects each of its teachers very carefully. For this reason I find 8. ______.</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q8">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            your comments distressing
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"Neither my daughter nor I have been impressed with the teacher..."</div>
+                            <div class="feedback-explanation">The father's strong complaints would be upsetting to the school.</div>
+                        </div>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 9:</div>
+                        <div class="question-text">...and the matter will be looked into immediately. Such a 9. ______ is not something that is tolerated at our school.</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q9">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            lack of professionalism
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"The teacher is simply unprofessional and poorly qualified."</div>
+                            <div class="feedback-explanation">The school wants to correct unprofessional behavior quickly.</div>
+                        </div>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 10:</div>
+                        <div class="question-text">I agree that Tara was a particularly 10. ______; she will not be easy to replace.</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q10">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            gifted teacher
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"Tara was truly exceptional at her job."</div>
+                            <div class="feedback-explanation">"Exceptional" means gifted or very talented.</div>
+                        </div>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 11:</div>
+                        <div class="question-text">Meanwhile, to show my appreciation for your willingness to 11. ______, I have enclosed a gift of two free tickets to the symphony.</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q11">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            give us a second chance
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"If you are unable to find a suitable replacement... I will have no other choice but to cancel all of my daughter's future lessons."</div>
+                            <div class="feedback-explanation">The father is still open to staying with the school if a new teacher is found — he's giving them a second chance.</div>
+                        </div>
+                    </div>
+                    <div class="return-link-container">
+                                <a href="02_Reading_Part1_Email_Correspondence.html" class="return-link">Return to the beginning of Part 1</a>
+                    </div>
+
+                        <!-- READING PART 2 -->
+                    <div class="section-header">
+                        <h2>Reading Part 2: Reading to Apply a Diagram</h2>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 1:</div>
+                        <div class="question-text">Remember how you mentioned wanting to be more active? Well, I got this flyer in the mail for the recreation centre near our office and thought you might be interested in 1. _______.</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q1-p2">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            signing up for a drop-in class
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"I got this flyer in the mail for the recreation centre near our office and thought you might be interested..."</div>
+                            <div class="feedback-explanation">The flyer mentions "Drop-In Group Fitness Classes" at the top, meaning that the classes do not require long-term registration. Jeanette's email states she got the flyer and thought Anna might be interested, making "signing up for a drop-in class" the best answer.</div>
+                        </div>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 2:</div>
+                        <div class="question-text">As far as classes go, I'm hoping to get in shape before summer... So my preference would be the 2. _______ class.</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q2-p2">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            Yoga for Adults
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"Yoga for Adults is available on Monday, Wednesday, and Thursday evenings from 7:00 PM to 8:00 PM."</div>
+                            <div class="feedback-explanation">Jeanette wants to go many nights a week, and Yoga for Adults is offered multiple nights in the evening, which fits her schedule.</div>
+                        </div>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 3:</div>
+                        <div class="question-text">Actually, I'm trying to convince my entire family to do the same. However, this place might not be the best for them since 3. _______.</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q3-p2">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            most classes are for adults
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"age restrictions of 16+ or 18+ for many classes"</div>
+                            <div class="feedback-explanation">Since most classes are only for adults, Jeanette thinks her whole family might not be able to join.</div>
+                        </div>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 4:</div>
+                        <div class="question-text">Anyways, I know you had mentioned wanting to try a bootcamp class, but unfortunately, it isn't 4. _______.</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q4-p2">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            meant for beginners
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"Extreme Bootcamp is an advanced level workout."</div>
+                            <div class="feedback-explanation">If it's an advanced class, it's not good for beginners like Anna, who wanted something easier to start with.</div>
+                        </div>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 5:</div>
+                        <div class="question-text">Also, if we were to buy the monthly membership 5. _______. Definitely worth considering!</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q5-p2">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            we can attend any class for free
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"Become a Member... receive unlimited access to our facilities and group classes."</div>
+                            <div class="feedback-explanation">Jeanette is saying the membership lets you go to as many classes as you want without paying extra.</div>
+                        </div>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 6:</div>
+                        <div class="question-text">What is Jeanette's relationship to Anna?</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q6-p2">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            friend
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"I miss getting picked up on your way to work!"</div>
+                            <div class="feedback-explanation">That shows they used to commute together and know each other personally. This sounds like a friendship, not a work or business relationship.</div>
+                        </div>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 7:</div>
+                        <div class="question-text">Why does Jeanette want to take evening classes?</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q7-p2">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            She works in the morning
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"I'm at my desk by 7:00 a.m. every day."</div>
+                            <div class="feedback-explanation">Because she starts work early, she can only go to classes in the evening.</div>
+                        </div>
+                    </div>
+                    <div class="question-detail">
+                        <div class="question-label">Question 8:</div>
+                        <div class="question-text">What does Jeanette think about the membership?</div>
+                        
+                        <div class="question-label">Your Answer:</div>
+                        <div class="user-answer" id="user-q8-p2">Not answered</div>
+                        
+                        <div class="question-label">Correct Answer:</div>
+                        <div class="correct-answer">
+                            <span class="checkmark">✓</span>
+                            It's a great value for the money
+                        </div>
+                        
+                        <div class="question-label">Feedback:</div>
+                        <div class="feedback-text">
+                            <div class="feedback-quote">"Definitely worth considering!"</div>
+                            <div class="feedback-explanation">She thinks the membership is a good deal because it gives you access to all classes, which saves money compared to paying for each one.</div>
+                        </div>
+                    </div>
+                    <div class="return-link-container">
+                                <a href="03_Reading_Part2_Reading_to_Apply_Diagram.html" class="return-link">Return to the beginning of Part 2</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to load participant information
+        function loadParticipantInfo() {
+            const firstName = localStorage.getItem('participantFirstName') || 'Hanford';
+            const lastName = localStorage.getItem('participantLastName') || 'Shum';
+            const email = localStorage.getItem('participantEmail') || 'truenorthenglishschool@gma...';
+            
+            document.getElementById('user-name').textContent = `${firstName} ${lastName}`;
+            document.getElementById('user-email').textContent = email;
+        }
+
+        // Function to calculate and display score statistics
+        function calculateScore() {
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+            const totalQuestions = 19; // 11 from page 1 + 8 from page 2
+
+            // Check answers from page 1
+            console.log('=== PART 1 ANSWER CHECKING ===');
+            for (let i = 1; i <= 11; i++) {
+                const userAnswer = localStorage.getItem(`q${i}`);
+                if (userAnswer) {
+                    // Get correct answer from the answer key
+                    const correctAnswers = {
+                        'q1': '5 years.',
+                        'q2': 'gives the daughter a lot of work.',
+                        'q3': 'recently started working at the school.',
+                        'q4': 'enjoy learning to play the violin.',
+                        'q5': 'ask for a different teacher.',
+                        'q6': 'dissatisfaction.',
+                        'q7': 'expectations as a parent were not met',
+                        'q8': 'your comments distressing',
+                        'q9': 'lack of professionalism',
+                        'q10': 'gifted teacher',
+                        'q11': 'give us a second chance'
+                    };
+                    
+                    const isCorrect = userAnswer.trim() === correctAnswers[`q${i}`];
+                    console.log(`Q${i}: User="${userAnswer}" | Correct="${correctAnswers[`q${i}`]}" | Match=${isCorrect}`);
+                    
+                    if (isCorrect) {
+                        correctCount++;
+                    } else {
+                        incorrectCount++;
+                    }
+                } else {
+                    console.log(`Q${i}: Not answered`);
+                    unansweredCount++;
+                }
+            }
+
+            // Check answers from page 2
+            console.log('=== PART 2 ANSWER CHECKING ===');
+            for (let i = 1; i <= 8; i++) {
+                const userAnswer = localStorage.getItem(`q${i}-p2`);
+                if (userAnswer) {
+                    // Get correct answer from the answer key
+                    const correctAnswers = {
+                        'q1-p2': 'signing up for a drop-in class',
+                        'q2-p2': 'Yoga for Adults',
+                        'q3-p2': 'most classes are for adults',
+                        'q4-p2': 'meant for beginners',
+                        'q5-p2': 'we can attend any class for free',
+                        'q6-p2': 'friend',
+                        'q7-p2': 'She works in the morning',
+                        'q8-p2': 'It\'s a great value for the money'
+                    };
+                    
+                    const isCorrect = userAnswer.trim() === correctAnswers[`q${i}-p2`];
+                    console.log(`Q${i+11}: User="${userAnswer}" | Correct="${correctAnswers[`q${i}-p2`]}" | Match=${isCorrect}`);
+                    
+                    if (isCorrect) {
+                        correctCount++;
+                    } else {
+                        incorrectCount++;
+                    }
+                } else {
+                    console.log(`Q${i+11}: Not answered`);
+                    unansweredCount++;
+                }
+            }
+
+            // Calculate percentage - count unanswered as incorrect
+            const totalIncorrect = incorrectCount + unansweredCount;
+            const percentage = totalQuestions > 0 ? Math.round((correctCount / totalQuestions) * 100) : 0;
+            
+            console.log('=== FINAL SCORE CALCULATION ===');
+            console.log(`Correct: ${correctCount}, Incorrect: ${incorrectCount}, Unanswered: ${unansweredCount}`);
+            console.log(`Total Incorrect (including unanswered): ${totalIncorrect}`);
+            console.log(`Total: ${totalQuestions}, Percentage: ${percentage}%`);
+
+            // Update score display
+            document.getElementById('score-percentage').textContent = `${correctCount}/${totalQuestions} Points (${percentage}%)`;
+            document.getElementById('correct-count').textContent = correctCount;
+            document.getElementById('incorrect-count').textContent = totalIncorrect;
+            document.getElementById('unanswered-count').textContent = unansweredCount;
+
+            // Get time taken from localStorage or set default
+            const timeTaken = localStorage.getItem('timeTaken') || '0 minutes';
+            document.getElementById('time-taken').textContent = timeTaken;
+            
+            // Get completion time from localStorage
+            const testEndTime = localStorage.getItem('testEndTime');
+            if (testEndTime) {
+                const completionTime = new Date(testEndTime).toLocaleString();
+                document.getElementById('completion-time').textContent = completionTime;
+            }
+        }
+
+        // Function to load user answers from localStorage
+        function loadUserAnswers() {
+            console.log('Loading user answers...');
+            
+            // Load answers from page 1
+            for (let i = 1; i <= 11; i++) {
+                const userAnswer = localStorage.getItem(`q${i}`);
+                const userAnswerElement = document.getElementById(`user-q${i}`);
+                
+                console.log(`Checking q${i}:`, userAnswer, userAnswerElement);
+                
+                if (userAnswerElement) {
+                    // Get correct answer from the correct answer element
+                    const questionDetail = userAnswerElement.closest('.question-detail');
+                    const correctAnswerElement = questionDetail.querySelector('.correct-answer');
+                    const correctAnswer = correctAnswerElement.textContent.replace('✓', '').trim();
+                    
+                    if (userAnswer) {
+                        userAnswerElement.textContent = userAnswer;
+                        console.log(`q${i} - User: "${userAnswer}", Correct: "${correctAnswer}"`);
+                        
+                        // Add visual indicator to user answer
+                        if (userAnswer.trim() === correctAnswer) {
+                            userAnswerElement.style.backgroundColor = '#d4edda';
+                            userAnswerElement.style.color = '#155724';
+                            userAnswerElement.style.borderColor = '#c3e6cb';
+                            userAnswerElement.innerHTML = '<span style="color: #28a745; font-weight: bold; margin-right: 8px;">✓</span>' + userAnswer;
+                        } else {
+                            userAnswerElement.style.backgroundColor = '#f8d7da';
+                            userAnswerElement.style.color = '#721c24';
+                            userAnswerElement.style.borderColor = '#f5c6cb';
+                            userAnswerElement.innerHTML = '<span style="color: #dc3545; font-weight: bold; margin-right: 8px;">✗</span>' + userAnswer;
+                        }
+                    } else {
+                        // Handle unanswered questions - show as incorrect
+                        userAnswerElement.textContent = "Not answered";
+                        userAnswerElement.style.backgroundColor = '#f8d7da';
+                        userAnswerElement.style.color = '#721c24';
+                        userAnswerElement.style.borderColor = '#f5c6cb';
+                        userAnswerElement.style.fontStyle = 'italic';
+                        userAnswerElement.innerHTML = '<span style="color: #dc3545; font-weight: bold; margin-right: 8px;">✗</span>Not answered';
+                        console.log(`q${i} - Not answered, marked as incorrect`);
+                    }
+                }
+            }
+            
+            // Load answers from page 2
+            for (let i = 1; i <= 8; i++) {
+                const userAnswer = localStorage.getItem(`q${i}-p2`);
+                const userAnswerElement = document.getElementById(`user-q${i}-p2`);
+                
+                console.log(`Checking q${i}-p2:`, userAnswer, userAnswerElement);
+                
+                if (userAnswerElement) {
+                    // Get correct answer from the correct answer element
+                    const questionDetail = userAnswerElement.closest('.question-detail');
+                    const correctAnswerElement = questionDetail.querySelector('.correct-answer');
+                    const correctAnswer = correctAnswerElement.textContent.replace('✓', '').trim();
+                    
+                    if (userAnswer) {
+                        userAnswerElement.textContent = userAnswer;
+                        console.log(`q${i}-p2 - User: "${userAnswer}", Correct: "${correctAnswer}"`);
+                        
+                        // Add visual indicator to user answer
+                        if (userAnswer.trim() === correctAnswer) {
+                            userAnswerElement.style.backgroundColor = '#d4edda';
+                            userAnswerElement.style.color = '#155724';
+                            userAnswerElement.style.borderColor = '#c3e6cb';
+                            userAnswerElement.innerHTML = '<span style="color: #28a745; font-weight: bold; margin-right: 8px;">✓</span>' + userAnswer;
+                        } else {
+                            userAnswerElement.style.backgroundColor = '#f8d7da';
+                            userAnswerElement.style.color = '#721c24';
+                            userAnswerElement.style.borderColor = '#f5c6cb';
+                            userAnswerElement.innerHTML = '<span style="color: #dc3545; font-weight: bold; margin-right: 8px;">✗</span>' + userAnswer;
+                        }
+                    } else {
+                        // Handle unanswered questions - show as incorrect
+                        userAnswerElement.textContent = "Not answered";
+                        userAnswerElement.style.backgroundColor = '#f8d7da';
+                        userAnswerElement.style.color = '#721c24';
+                        userAnswerElement.style.borderColor = '#f5c6cb';
+                        userAnswerElement.style.fontStyle = 'italic';
+                        userAnswerElement.innerHTML = '<span style="color: #dc3545; font-weight: bold; margin-right: 8px;">✗</span>Not answered';
+                        console.log(`q${i}-p2 - Not answered, marked as incorrect`);
+                    }
+                }
+            }
+        }
+
+        // Load user answers when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Answer Key page loaded');
+            loadParticipantInfo();
+            loadUserAnswers();
+            calculateScore();
+            
+            // Debug: Check what's in localStorage
+            console.log('localStorage contents:');
+            for (let i = 1; i <= 11; i++) {
+                const answer = localStorage.getItem(`q${i}`);
+                console.log(`q${i}:`, answer);
+            }
+            for (let i = 1; i <= 8; i++) {
+                const answer = localStorage.getItem(`q${i}-p2`);
+                console.log(`q${i}-p2:`, answer);
+            }
+        });
+
+
+
+        // Handle Explanation button click
+        document.querySelector('.explanation-button').addEventListener('click', function() {
+            window.open('https://www.skool.com/celpipexperts/classroom/8e176082?md=2ea871ce68b74d629441ffde366c3390', '_blank');
+        });
+    </script>
+</body>
+</html> 
